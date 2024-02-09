@@ -1,0 +1,177 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>posts</title>-->
+
+<!--&lt;!&ndash; ++++++++++++++++++++ boostrap cdn ++++++++++++++++++++++++ &ndash;&gt;-->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"-->
+<!--crossorigin="anonymous">-->
+
+<!--</head>-->
+<!--<style>-->
+<!--    #cke_id_body{-->
+<!--        width:inherit!important;-->
+<!--    }-->
+<!--    .htmleditor p{-->
+<!--        font-weight: 900;-->
+<!--        font-size: 20px;-->
+<!--    }-->
+<!--    .texteditor p label{-->
+<!--        font-weight: 800;-->
+<!--        font-size: 18px;-->
+<!--    }-->
+<!--    #htmldata{-->
+<!--        font-weight: 600;-->
+<!--    }-->
+<!--</style>-->
+<!--<body>-->
+<!--    &lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Navbar start &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--        <a class="navbar-brand" href="#">TexttoHtml</a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse"-->
+<!--        data-target="#navbarSupportedContent"-->
+<!--        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav mr-auto">-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" href="{% url 'home' %}">Home </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" href="#">About </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" href="{% url 'post' %}">Posts</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        </nav>-->
+<!--    &lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Navbar Ends&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+<!--  <div class="bg-dark p-2 my-3">-->
+<!--{% for i in posts %}-->
+<!--<div class="justify-content-left text-primary">-->
+<!--{{i}}-->
+<!--</div>-->
+
+<!--<div class="justify-content-left text-primary">-->
+<!--    {{i |safe }}-->
+<!--</div>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--{% endfor %}-->
+<!--  </div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>posts</title>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+</head>
+<style>
+    /* Custom CSS */
+    .post-container {
+        display: flex;
+        justify-content: space-between;
+        overflow:hidden;
+    }
+    .post {
+        width: 48%; /* Adjust as needed */
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        word-wrap: break-word;
+    }
+    #copyBtn {
+        cursor: pointer;
+        color: #007bff;
+    }
+    .heading-col {
+        display: flex;
+        align-items: center;
+    }
+</style>
+<body>
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">TexttoHtml</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about-us' %}">About </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'post' %}">Posts</a>
+                </li>
+            </ul>
+        </div>
+        </nav>
+    <!-- Main Content -->
+    <div class="container-100 ">
+        <h1 class="text-center bg-info text-white m-3">Admin uploaded content </h1>
+        <div class=" p-1 my-1">
+
+            {% for i in posts %}
+            <div class="row bg-dark text-white">
+                <div class="col-sm-6 heading-col">
+                    <h2>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Actual Content</h2>
+                </div>
+                <div class="col-sm-6 heading-col justify-content-end">
+                    <h2 >HTML Converted Content&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</h2>
+                </div>
+            </div>
+            <div class="post-container bg-secondary px-6">
+                <div class="post justify-content-left text-white">
+                    {{ i  | safe }}
+                </div>
+
+                <div class="post justify-content-left text-white">
+
+                    <div id="content{{ forloop.counter }}" class="content" style="position:relative;">
+                        {{ i  }}
+                        <br><br><br>
+                        <span  class="btn btn-dark text-white" id="copyBtn" onclick="copyContent({{ forloop.counter }})">Copy</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- JavaScript for Copy Functionality -->
+    <script>
+        function copyContent(id) {
+            var content = document.getElementById('content' + id).innerText;
+            var textarea = document.createElement('textarea');
+            textarea.value = content;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Content copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

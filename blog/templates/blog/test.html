@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>posts</title>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+</head>
+<style>
+    /* Custom CSS */
+    .post-container {
+        display: flex;
+        justify-content: space-between;
+        overflow:hidden;
+    }
+    .post {
+        width: 75%; /* Adjust as needed */
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        word-wrap: break-word;
+    }
+    #copyBtn {
+        cursor: pointer;
+        color: #007bff;
+    }
+</style>
+<body>
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">TexttoHtml</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about-us' %}">About </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'post' %}">Posts</a>
+                </li>
+            </ul>
+        </div>
+        </nav>
+    <!-- Main Content -->
+    <div class="container-100 ">
+        <div class=" p-1 my-1">
+            {% for i in posts %}
+            <div class="post-container">
+                <div class="post justify-content-left text-success">
+                    {{ i  | safe }}
+                </div>
+                <div class="post justify-content-left text-primary">
+                    <div id="content{{ forloop.counter }}" class="content" style="position:relative;">
+                        {{ i  }}
+                        <span  class="btn btn-secondary text-white" id="copyBtn" onclick="copyContent({{ forloop.counter }})">Copy</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- JavaScript for Copy Functionality -->
+    <script>
+        function copyContent(id) {
+            var content = document.getElementById('content' + id).innerText;
+            var textarea = document.createElement('textarea');
+            textarea.value = content;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Content copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
+<p>1. Tutorials and How-to Guides</p><p>Tutorials and How-to guides are probably the simplest type of blog post you can work on. They are easy because they involve you talking about things you are already familiar with such as your product or service.</p>
+<br><p>The most important thing when it comes to how-to guides is to break down your tutorial into the smallest steps and into the simplest terms. Don&rsquo;t assume your readers know what they&rsquo;re doing &mdash; this is a tutorial, remember?</p><p>Think about your recent work, and you can probably find some great ideas for you to write a tutorial on. Our co-founder built the largest WordPress resource, <a href="http://www.wpbeginner.com/" rel="noopener noreferrer" target="_blank">WPBeginner</a>, by following this exact same principle.</p>\r\n\r\n<h3>2. Latest Industry&nbsp;News</h3><p>You have your morning routine, just like I do. You skim the online news and find the latest trends in your industry. Why not make your morning routine into a blog post?</p>\r\n\r\n<p><img alt="Wall-Street-Journal" class="alignnone entered lazyloaded size-full wp-image-82193" src="https://cdn.optinmonster.com/wp-content/uploads/2015/03/Wall-Street-Journal.jpg" style="height:272px; width:563px" title="Wall-Street-Journal - OptinMonster" /></p>\r\n\r\n<p>Find a few of the most recent events in your industry and blog about them. You can even link to news articles if you feel it is appropriate.</p>\r\n\r\n<p>The important thing is that you add your &ldquo;flavor&rdquo; to it (thoughts, criticism, etc). You will have a new blog post in minutes! (Here&rsquo;s a <a href="http://www.wpbeginner.com/news/whats-new-in-wordpress-4-3/" rel="noopener noreferrer" target="_blank">good example</a>).</p>'}
+
+</body>
+</html>
